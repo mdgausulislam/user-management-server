@@ -4,6 +4,7 @@ const port =process.env.PORT || 5000;
 
 const cors=require('cors');
 app.use(cors());
+app.use(express.json());
 
 
 const user=[
@@ -23,6 +24,10 @@ app.get('/user',(req,res)=>{
 app.post('/user',(req,res)=>{
     console.log('post api hitting');
     console.log(req.body);
+    const newUser=req.body;
+    newUser.id=user.length+1;
+    user.push(newUser);
+    res.send(newUser);
 })
 
 
